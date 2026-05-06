@@ -34,9 +34,16 @@ let snake = document.getElementById('snake');
 
   function endGame() {
   clearInterval(gameInterval);
-  document.querySelector('.game-over').style.display = 'block';
+
+  document.querySelector('.game-area').classList.add('shake');
+
+  setTimeout(() => {
+    document.querySelector('.game-area').classList.remove('shake');
+    document.querySelector('.game-over').style.display = 'block';
+  }, 400);
+
   document.getElementById('gameOverScore').innerText = score;
-  }
+}
 
 
   function restartGame() {
@@ -66,14 +73,26 @@ let snake = document.getElementById('snake');
     }
 
     function eatFood() {
-    if (snakeLeft === foodLeft && snakeTop === foodTop) {
+      if (snakeLeft === foodLeft && snakeTop === foodTop) {
         score++;
-        document.getElementById('score').innerText = score; // تحديث قيمة السكور في الصفحة
-        let newBlock = { left: snakeBody[snakeBody.length - 1].left, top: snakeBody[snakeBody.length - 1].top };
+        document.getElementById('score').innerText = score;
+
+        // 👇 animation
+        let scoreBox = document.querySelector('.score');
+        scoreBox.classList.add('score-pop');
+        setTimeout(() => {
+          scoreBox.classList.remove('score-pop');
+        }, 300);
+
+        let newBlock = {
+          left: snakeBody[snakeBody.length - 1].left,
+          top: snakeBody[snakeBody.length - 1].top
+        };
+
         snakeBody.push(newBlock);
         generateFood();
+      }
     }
-}
 
 
     function moveSnake() {
@@ -127,7 +146,7 @@ let snake = document.getElementById('snake');
         segment.classList.add('snake');
         segment.style.width = '20px';
         segment.style.height = '20px';
-        segment.style.backgroundColor = '#00cc00';
+        segment.style.backgroundColor = '#000';
         segment.style.position = 'absolute';
         segment.style.left = snakeBody[i].left + 'px';
         segment.style.top = snakeBody[i].top + 'px';
