@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="TERO-VERSE/Tero.png" type="">
+  <title>Tero Verse</title>
+  <link rel="stylesheet" href="TERO-VERSE/Tero.css">
+</head>
+<body>
+    <div class="start-page">
+      <input type="text" id="playerName" placeholder="Enter Your Name">
+      <button onclick="startGame()">Start Game</button>
+    </div>
+      <div class="game-area">
+          <div class="snake" id="snake"></div>
+          <div class="snake" style="left: 20px; top: 0;"></div>
+          <img class="food" id="food" src="TERO-VERSE/assets/apple.png" alt="Apple">
+      </div>
+      <div class="player-name" id="playerNameDisplay"></div>
+      <div class="score">
+        <p id="score">0</p>
+        <div class="player-name-score" id="playerNameScore"></div>
+      </div>
+      <div class="game-over" style="display: none;">
+        <h1>Game Over!</h1>
+        <p>Your score is <span id="gameOverScore"></span></p>
+        <button onclick="restartGame()">Play Again</button>
+      </div>
+      <script src="TERO-VERSE/game.js"></script>
+</body>
+</html>
